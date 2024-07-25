@@ -8,7 +8,7 @@ Authors@R: Authors@R: person(given = "Timothy A.",
                              email = "myersta@mail.nih.gov",
                              comment = c(ORCID = "0000-0001-8127-3446")
                              )
-Description: UpSetToolkit is a tool designed to for handling, manipulating, and visualizing genomic 
+Description: UpSetToolkit is a tool designed for handling, manipulating, and visualizing genomic 
 data from CHiP-atlas, the Fabian Variant web app, and the MotifBreakR R package.  This R 
 scripts in the toolkit clean, manipulate, and integrate SNP data stored in CSV, 
 tab-delimited, and BED file formats. The primary goal of UpSetToolkit is to facilitate 
