@@ -8,7 +8,7 @@ sum_table_chip_file <- "data/input/sum_table_six_SNPs.bed.txt"
 sum_table_chip <- as.data.frame(read_delim(sum_table_chip_file, delim = "\t"))
 
 # Option 2, all 39 SNPs
-final_sum_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/output_count_files/final_binary_counts_39_snps.txt"
+final_sum_file <- "data/output/upset_count_files/output/final_binary_counts_39_snps.txt"
 final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
 
 # Different text scale options
@@ -32,10 +32,10 @@ count_binary_cols <- sum(binary_cols)
 # Create a vector of colors, one for each set or `count_binary_cols`
 sets_colors <- RColorBrewer::brewer.pal(count_binary_cols, "Paired")
 
-pdf(file = "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/final_upset_20240724-142653.pdf",
-     width = 7,
-     height = 5
-     )
+# pdf(file = "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/final_upset_20240724-142653.pdf",
+#     width = 7,
+#     height = 5
+#     )
 
 UpSetR::upset(final_sum_table,
               # empty.intersections = "on",
@@ -59,6 +59,6 @@ UpSetR::upset(final_sum_table,
               shade.color = shade_col
               )
 
-dev.off()
+# dev.off()
 
 
