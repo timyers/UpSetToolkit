@@ -3,8 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-`UpSetToolkit` is an R project used to create UpSet plots and was created exclusively for an internal renal cancer research project, 2023-2024. The R scripts are used to create files as input for the UpSetR R package. The data used for the files was downloaded from the [CHiP-Atlas](https://chip-atlas.org/peak_browser), output from [Fabian Variant](https://www.genecascade.org/fabian/) web app, and output from my [`MotifFindR` R project](https://github.com/timyers/MotifFindR/tree/master), that primarily used the R package [`motifbreakR`](https://bioconductor.org/packages/release/bioc/html/motifbreakR.html). The R package [`UpSetR`](https://github.com/hms-dbmi/UpSetR) is used to generate
-UpSet plots.
+`UpSetToolkit` is an R project used to create UpSet plots and was created exclusively for an internal renal cancer research project, 2023-2024. The R scripts are used to create files as input for the [`UpSetR`](https://github.com/hms-dbmi/UpSetR). The data used for the files was downloaded from the [CHiP-Atlas](https://chip-atlas.org/peak_browser), output from [Fabian Variant](https://www.genecascade.org/fabian/) web app, and output from my [`MotifFindR` R project](https://github.com/timyers/MotifFindR/tree/master), that primarily used the R package [`motifbreakR`](https://bioconductor.org/packages/release/bioc/html/motifbreakR.html).
 
 ## Installation
 
