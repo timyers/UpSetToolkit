@@ -5,18 +5,18 @@
 library(readr)
 
 # Read the first bed file of SNPs of interest
-snp_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/six_snps_fabian_format.txt"
+snp_file <- "data/input/fabian_tffm/six_snps_fabian_format.txt"
 snps <- read_delim(snp_file, delim = "\t", col_names = TRUE, comment = "#")
 
 # Or with 39 SNPs
-snp_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/required_format/reformated_fabian_all_39_SNPs.txt"
+snp_file <- "data/input/fabian_tffm/reformated_fabian_all_39_SNPs.txt"
 snps <- read_delim(snp_file, delim = "\t", col_names = TRUE, comment = "#")
 
 
 # Read the second Fabian-varaint results file,
 # see Fabian documentation for column descriptions
-# fabian_results_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/six_snps_fabian_full_results_2024-07-09_1720552854_11091_data.tsv"
-fabian_results_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/fabian-variant_web-app_results/_38_variants_fabian_web_app_1721760199_46373_data.tsv"
+# fabian_results_file <- "data/input/fabian_tffm/six_snps_fabian_full_results_2024-07-09_1720552854_11091_data.tsv"
+fabian_results_file <- "data/input/fabian_tffm/_38_variants_fabian_web_app_1721760199_46373_data.tsv"
 fabian_results <- read_delim(fabian_results_file, 
                              delim = "\t",
                              col_names = TRUE,
@@ -42,5 +42,5 @@ snps <- snps %>% select(-fabian_format)
 print(snps)
 
 # Write the updated snps data to a new file
-write_tsv(snps, "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/tf_counter_output/tffm_count_39_snps.txt")
+write_tsv(snps, "data/output/fabian_tffm/tffm_count_39_snps.txt")
 
