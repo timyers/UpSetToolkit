@@ -11,7 +11,7 @@ library(readr)
 library(tidyr)
 
 # Read the .bed file
-bed_data <- fread("/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/dnase_chip-atlas/DNase.Kidney.100.AllAg.AllCell.bed", header = FALSE, sep = "\t")
+bed_data <- fread("data/input/DNase/DNase.Kidney.100.AllAg.AllCell.bed", header = FALSE, sep = "\t")
 
 # Assign column names based on .bed file format
 colnames(bed_data) <- c("chrom", "chromStart", "chromEnd", "name", "score", "strand", "thickStart", "thickEnd", "itemRgb")
@@ -43,7 +43,7 @@ print(bed_data_separated)
 
 
 # Define the path to the output file
-output_file_path <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/dnase_chip-atlas/parsed.DNase.Kidney.100.AllAg.AllCell.bed.txt"
+output_file_path <- "data/output/DNase/parsed.DNase.Kidney.100.AllAg.AllCell.bed.txt"
 
 # Write the final data frame to a text file
 write_tsv(bed_data_separated, output_file_path)
