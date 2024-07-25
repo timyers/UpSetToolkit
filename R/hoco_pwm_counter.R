@@ -17,11 +17,11 @@ library(dplyr)
 ##### Input Files #####
 # Read the first text file of SNPs of interest,
 # with Fabian Variant required formatting
-snp_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/required_format/reformated_fabian_all_39_SNPs.txt"
+snp_file <- "data/input/fabian_tffm/reformated_fabian_all_39_SNPs.txt"
 snps <- read_delim(snp_file, delim = "\t", col_names = TRUE, comment = "#")
 
 # Read the second HOCOMOCO results CSV file,
-hoco_results_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Rprojects_OneDrive/winter/MotifFindR/data/data-out/rcc_39-snps_hocomoco_no-ld_granges_object_pval_20240724_081716.csv"
+hoco_results_file <- "data/input/motifbreakr_hoco/rcc_39-snps_hocomoco_no-ld_granges_object_pval_20240724_081716.csv"
 hoco_results <- read_csv(hoco_results_file, 
                          col_names = TRUE
                         )
@@ -56,4 +56,4 @@ snps <- snps %>%
 snps <- snps %>% select(-fabian_format)
 
 # Write the updated snps data to a new file
-write_tsv(snps, "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/motifbreakr_tf/hoco_counter_output/hoco_count_39_snps.txt")
+write_tsv(snps, "data/output/motifbreakr_hoco/hoco_count_39_snps.txt")
