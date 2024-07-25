@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Mac OSX
+.DS_Store
+/doc/
+/Meta/
