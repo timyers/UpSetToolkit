@@ -10,7 +10,7 @@
 install.packages("biomaRt")
 
 # Read in the list of SNP IDs from the text file
-rsid_filename <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/TW_39-SNPs-List.txt"
+rsid_filename <- "data/input/TW_39-SNPs-List.txt"
 snp_ids <- readLines(rsid_filename)
 
 ### Use `biomaRt` to get the chrom and position info, GRCh38.p14
@@ -53,7 +53,7 @@ current_time <- format(Sys.time(), "%Y%m%d_%H%M%S")
 snp_list_length <- nrow(bed_data)
 
 # Create a unique file name using the current date and time
-file_name_path <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/"
+file_name_path <- "data/input/"
 file_name <- paste0(file_name_path, "rcc_snps_",
                     snp_list_length, "_", current_time, ".bed")
 
