@@ -7,3 +7,6 @@
 .DS_Store
 /doc/
 /Meta/
+
+# data files
+/data/
