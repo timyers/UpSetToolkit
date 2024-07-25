@@ -4,7 +4,7 @@ library(readr)
 library(RColorBrewer)
 
 # Option 1, for six priority SNPs
-sum_table_chip_file <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/sum_table_six_SNPs.bed.txt"
+sum_table_chip_file <- "data/input/sum_table_six_SNPs.bed.txt"
 sum_table_chip <- as.data.frame(read_delim(sum_table_chip_file, delim = "\t"))
 
 # Option 2, all 39 SNPs

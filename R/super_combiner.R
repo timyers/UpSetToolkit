@@ -13,7 +13,7 @@
 library(dplyr)
 
 # Step 1: List all text files in the directory
-directory_path <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/input_count_files"
+directory_path <- "data/output/upset_count_files/input"
 text_files <- list.files(path = directory_path, pattern = "\\.txt$", full.names = TRUE)
 
 # Step 2: Read each text file into a data frame and store them in a list
@@ -44,7 +44,7 @@ final_data_frame <- combined_data_frame %>%
 colnames(final_data_frame) <- gsub("\\.x$", "", colnames(final_data_frame))
 
 # Step 7: Save data frame as an intermediary file.
-write_tsv(final_data_frame, "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/output_count_files/super_counts_interm_39_snps.txt")
+write_tsv(final_data_frame, "data/output/upset_count_files/output/super_counts_interm_39_snps.txt")
 
 # Step 8: Convert _count columns to binary (1 if >=1, otherwise 0)
 final_data_frame <- final_data_frame %>%
@@ -63,4 +63,4 @@ final_data_frame <- final_data_frame %>%
 
 # Step 9: Write final data frame with binary values to text file
 # This file will be used to make the upset plot.
-write_tsv(final_data_frame, "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/output_count_files/final_binary_counts_39_snps.txt")
+write_tsv(final_data_frame, "data/output/upset_count_files/output/final_binary_counts_39_snps.txt")
