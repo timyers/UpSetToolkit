@@ -2,7 +2,7 @@
 
 <!-- badges: end -->
 
-`UpSetToolkit` is an R project used to create UpSet plots and was created exclusively for an **internal** renal cancer research project, 2023-2024. The R scripts are used to create files as input for the [`UpSetR`](https://github.com/hms-dbmi/UpSetR) R package. The data used for the files was downloaded from the [CHiP-Atlas](https://chip-atlas.org/peak_browser), output from [Fabian Variant](https://www.genecascade.org/fabian/) web app, and output from my [`MotifFindR` R project](https://github.com/timyers/MotifFindR/tree/master), that primarily used the R package [`motifbreakR`](https://bioconductor.org/packages/release/bioc/html/motifbreakR.html).
+`UpSetToolkit` is an R project used to create UpSet plots and was created exclusively for an **internal** renal cancer research project, 2023-2024. The R scripts are used to create files as input for the [`UpSetR`](https://github.com/hms-dbmi/UpSetR) R package. The data used for the files was downloaded from the [CHiP-Atlas](https://chip-atlas.org/peak_browser), output from [FABIAN-Variant](https://www.genecascade.org/fabian/) web app, and output from my [`MotifFindR` R project](https://github.com/timyers/MotifFindR/tree/master), that primarily used the R package [`motifbreakR`](https://bioconductor.org/packages/release/bioc/html/motifbreakR.html).
 
 ## Installation
 
@@ -49,7 +49,7 @@ Additional details about the above scripts can be found in the comments at the b
      + A threshold of significance of 100.
 2. Parse each of these downloaded large BED files using script `bed_parser.R`.
 3. Count the overlaps in these files by comparing them to a list of SNPs of interest using script `snp_overlap_counter.R`.  The script will save these output files with counts for later use.
-4. Use [Fabian Variant](https://www.genecascade.org/fabian/) web tool to analyze SNPs of interest to predict the effect of variants on transcription factor binding sites (TFBS). From list of SNPs to analyze, generate required variant input format using the utility script `fabian_format_maker.R`.  This script uses the default format (e.g. chr17:19437135G>A). See list below for parameters selected for this project.  Download and save the results file.
+4. Use [FABIAN-Variant](https://www.genecascade.org/fabian/) web tool to analyze SNPs of interest to predict the effect of variants on transcription factor binding sites (TFBS). From list of SNPs to analyze, generate required variant input format using the utility script `fabian_format_maker.R`.  This script uses the default format (e.g. chr17:19437135G>A). See list below for parameters selected for this project.  Download and save the results file.
      + Genome build -> GRCh38/hg38
      + Transcription Factors -> All
      + Filter by model -> TFFM detailed and TFFM first-order
