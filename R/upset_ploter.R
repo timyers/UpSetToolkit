@@ -16,10 +16,17 @@ final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
 final_sum_table <- final_sum_table %>%
   select(-H3K4me3)
 
-##################################################
-# Optional step:  Combine Histone and TF columns #
-##################################################
-# Create the new column "H3K4me1_K27ac" by combining
+#######################################################
+# Optional steps:  Combine Histone, TF, and ATAC/DNase#
+#######################################################
+# Create the new column "ATAC/DNase" by combining
+# "ATAC-seq" and "DNase-seq"
+final_sum_table <- final_sum_table %>%
+  mutate(`ATAC/DNase` = ifelse((`ATAC-Seq` + `DNase-Seq`) >= 1, 1, 0)) %>%
+  select(-`ATAC-Seq`, -`DNase-Seq`)
+
+
+`# Create the new column "H3K4me1_K27ac" by combining
 # H3K4me1 & H3K27ac
 final_sum_table <- final_sum_table %>%
   mutate(H3K4me1_K27ac = ifelse((H3K27ac + H3K4me1) >= 1, 1, 0)) %>%
@@ -29,6 +36,10 @@ final_sum_table <- final_sum_table %>%
 final_sum_table <- final_sum_table %>%
   mutate(TFBS = ifelse((TF_hoco + TF_tffm) >= 1, 1, 0)) %>%
   select(-TF_hoco, -TF_tffm)
+
+# Create the new column "ATAC/DNase" by combining
+# "ATAC-seq" and "DNase-seq"
+
 
 ##################################################
 # End optional step                              #
