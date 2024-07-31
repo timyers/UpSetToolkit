@@ -25,10 +25,12 @@ final_sum_table <- final_sum_table %>%
 final_sum_table <- final_sum_table %>%
   mutate(TFBS = ifelse((TF_hoco + TF_tffm) >= 1, 1, 0)) %>%
   select(-TF_hoco, -TF_tffm)
+
 ##################################################
 # End optional step                              #
 ##################################################
 
+# Define parameters for 'upset' function below
 # Different text scale options
 text_scale_options3 <- c(1.5, 1.25, 1.25, 1.25, 1.5, 1.5) #best
 
@@ -39,7 +41,7 @@ main_bar_col <- c("black")
 matrix_col <- c("black")
 shade_col <- c("wheat4")
 
-#
+# set ratio between matrix plot and main bar plot
 mb_ratio3 <- c(0.67, 0.33) # best
 
 # Count columns that contain binary values for `nset` parameter
