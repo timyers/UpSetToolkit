@@ -26,7 +26,7 @@ final_sum_table <- final_sum_table %>%
   select(-`ATAC-Seq`, -`DNase-Seq`)
 
 
-`# Create the new column "H3K4me1_K27ac" by combining
+# Create the new column "H3K4me1_K27ac" by combining
 # H3K4me1 & H3K27ac
 final_sum_table <- final_sum_table %>%
   mutate(H3K4me1_K27ac = ifelse((H3K27ac + H3K4me1) >= 1, 1, 0)) %>%
@@ -36,11 +36,6 @@ final_sum_table <- final_sum_table %>%
 final_sum_table <- final_sum_table %>%
   mutate(TFBS = ifelse((TF_hoco + TF_tffm) >= 1, 1, 0)) %>%
   select(-TF_hoco, -TF_tffm)
-
-# Create the new column "ATAC/DNase" by combining
-# "ATAC-seq" and "DNase-seq"
-
-
 ##################################################
 # End optional step                              #
 ##################################################
