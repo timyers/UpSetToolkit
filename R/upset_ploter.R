@@ -12,14 +12,18 @@ sum_table_chip <- as.data.frame(read_delim(sum_table_chip_file, delim = "\t"))
 final_sum_file <- "data/output/upset_count_files/output/final_binary_counts_39_snps.txt"
 final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
 
+# Decided to remove H3K4me3 from final upset plot (2024-07-31)
+final_sum_table <- final_sum_table %>%
+  select(-H3K4me3)
+
 ##################################################
 # Optional step:  Combine Histone and TF columns #
 ##################################################
-# Create the new column "H3K4me1/3_K27ac" by combining
-# H3K4me1, H3K4me3, H3K27ad
+# Create the new column "H3K4me1_K27ac" by combining
+# H3K4me1 & H3K27ac
 final_sum_table <- final_sum_table %>%
-  mutate(Histone_Activation = ifelse((H3K27ac + H3K4me1 + H3K4me3) >= 1, 1, 0)) %>%
-  select(-H3K27ac, -H3K4me1, -H3K4me3)
+  mutate(H3K4me1_K27ac = ifelse((H3K27ac + H3K4me1) >= 1, 1, 0)) %>%
+  select(-H3K27ac, -H3K4me1)
 
 # Create the new column "TFBS" by combining "TF_hoco" & "TF_tffm" 
 final_sum_table <- final_sum_table %>%
@@ -29,6 +33,7 @@ final_sum_table <- final_sum_table %>%
 ##################################################
 # End optional step                              #
 ##################################################
+
 
 ##### Define parameters for 'upset' function below #####
 # Different text scale options
@@ -78,7 +83,8 @@ UpSetR::upset(final_sum_table,
               text.scale=text_scale_options3,
               main.bar.color = main_bar_col,
               sets.bar.color = sets_colors,
-              order.by = "freq",
+              order.by = "degree",
+              # order.by = c("freq", "degree"),
               matrix.color = matrix_col,
               matrix.dot.alpha = 1,
               # text.scale=c(1.5, 1.5, 1.5, 1.5, 1.5, 1.4),
