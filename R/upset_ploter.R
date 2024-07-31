@@ -30,7 +30,7 @@ final_sum_table <- final_sum_table %>%
 # End optional step                              #
 ##################################################
 
-# Define parameters for 'upset' function below
+##### Define parameters for 'upset' function below #####
 # Different text scale options
 text_scale_options3 <- c(1.5, 1.25, 1.25, 1.25, 1.5, 1.5) #best
 
@@ -52,6 +52,12 @@ count_binary_cols <- sum(binary_cols)
 # Create a vector of colors, one for each set or `count_binary_cols`
 sets_colors <- RColorBrewer::brewer.pal(count_binary_cols, "Paired")
 
+# Dynamically set x-axis label with number of SNPs
+x_label <- paste0("Number of SNPs (", 
+                  nrow(final_sum_table), 
+                  ")"
+                  )
+
 # pdf(file = "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/upset_plots/final_upset_20240724-142653.pdf",
 #     width = 7,
 #     height = 5
@@ -64,7 +70,7 @@ UpSetR::upset(final_sum_table,
               nintersects = NA, #set to count all intersections
               keep.order = FALSE,
               mb.ratio = mb_ratio3,
-              sets.x.label = "Number of SNPs",
+              sets.x.label = x_label,
               mainbar.y.label="Number of Intersection SNPs",
               show.numbers = "yes",
               point.size = 2,
