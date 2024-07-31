@@ -57,7 +57,7 @@ Additional details about the above scripts can be found in the comments at the b
 5. The script `fabian_tffm_counter.R` is then used to set thresholds and count the effect of variants on TFBS.
 6. Analyze the list of SNPs of interest using the `R` package `motifbreakR`. My `R` project `MotifFindeR` is written to facilitate this analysis. It includes code with pval threshold set, data source used is HOCOMOCO only.
 7. The output from `MotifFindeR` is counted using the script `hoco_pwm_counter`.  Only TFBS designed as having a 'strong' effect are counted.
-8. The script `super_combiner.R` will read in all seven count files created by `snp_overlap_counter.R` (5), `fabian_tffm_counter.R` (1) and `hoco_pwm_counter.R` and created a binary count file by replacing counts >=1 to 1. All zero counts remain zero.  This binary count file wills erve as input to `upset_ploter.R`.
+8. The script `super_combiner.R` will read in all seven count files created by `snp_overlap_counter.R` (5), `fabian_tffm_counter.R` (1) and `hoco_pwm_counter.R` (1) and created a binary count file by replacing counts >=1 to 1. All zero counts remain zero.  This binary count file will serve as input to `upset_ploter.R`.
 9. `upset_ploter.R` will generate an UpSet plot from the output of step 8 using the `R` package `UpSetR`.
      
 
