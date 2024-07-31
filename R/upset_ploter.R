@@ -2,6 +2,7 @@
 
 library(readr)
 library(RColorBrewer)
+library(dplyr)
 
 # Option 1, for six priority SNPs
 sum_table_chip_file <- "data/input/sum_table_six_SNPs.bed.txt"
@@ -10,6 +11,23 @@ sum_table_chip <- as.data.frame(read_delim(sum_table_chip_file, delim = "\t"))
 # Option 2, all 39 SNPs
 final_sum_file <- "data/output/upset_count_files/output/final_binary_counts_39_snps.txt"
 final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
+
+##################################################
+# Optional step:  Combine Histone and TF columns #
+##################################################
+# Create the new column "H3K4me1/3_K27ac" by combining
+# H3K4me1, H3K4me3, H3K27ad
+final_sum_table <- final_sum_table %>%
+  mutate(Histone_Activation = ifelse((H3K27ac + H3K4me1 + H3K4me3) >= 1, 1, 0)) %>%
+  select(-H3K27ac, -H3K4me1, -H3K4me3)
+
+# Create the new column "TFBS" by combining "TF_hoco" & "TF_tffm" 
+final_sum_table <- final_sum_table %>%
+  mutate(TFBS = ifelse((TF_hoco + TF_tffm) >= 1, 1, 0)) %>%
+  select(-TF_hoco, -TF_tffm)
+##################################################
+# End optional step                              #
+##################################################
 
 # Different text scale options
 text_scale_options3 <- c(1.5, 1.25, 1.25, 1.25, 1.5, 1.5) #best
@@ -42,7 +60,7 @@ UpSetR::upset(final_sum_table,
               # sets = set_vars,
               nsets = count_binary_cols,
               nintersects = NA, #set to count all intersections
-              keep.order = TRUE,
+              keep.order = FALSE,
               mb.ratio = mb_ratio3,
               sets.x.label = "Number of SNPs",
               mainbar.y.label="Number of Intersection SNPs",
