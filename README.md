@@ -45,7 +45,7 @@ Additional details about the above scripts can be found in the comments at the b
 1. Download genome-wide BED files from [ChIP-Atlas](https://chip-atlas.org/peak_browser) using the following parameters:
      + H. sapiens (hg38)
      + Select track type class: for this project we were interested in, ATAC-Seq, DNase-seq, and ChIP Histone track types H3K27ac, H3K4me1, H3K4me3.  These are large files.
-     + Cell type class "Kidney"" with cell type "All" selected.
+     + Cell type class "Kidney" with cell type "All" selected.
      + A threshold of significance of 100.
 2. Parse each of these downloaded large BED files using script `bed_parser.R`.
 3. Count the overlaps in these files by comparing them to a list of SNPs of interest using script `snp_overlap_counter.R`.  The script will save these output files with counts for later use.
