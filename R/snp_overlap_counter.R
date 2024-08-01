@@ -114,7 +114,7 @@ output_path <- "data/output/H3K4me3/counts/"
 output_path <- "data/output/H3K27ac/counts/"
 
 # output_file <- paste0(output_path, new_col_name, "_six_SNPs.bed.txt")
-output_file <- paste0(output_path, new_col_name, "_all_39_SNPs_", current_time, ".bed.txt")
+# output_file <- paste0(output_path, new_col_name, "_all_39_SNPs_", current_time, ".bed.txt")
 output_file <- paste0(output_path,
                      new_col_name,
                      "_",
