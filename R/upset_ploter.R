@@ -12,6 +12,10 @@ sum_table_chip <- as.data.frame(read_delim(sum_table_chip_file, delim = "\t"))
 final_sum_file <- "data/output/upset_count_files/output/final_binary_counts_39_snps.txt"
 final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
 
+# Option 3, 32 SNPs
+final_sum_file <- "data/output/upset_count_files/output/final_binary_counts_32_snps_20240801_150840.txt"
+final_sum_table <- as.data.frame(read_delim(final_sum_file, delim = "\t"))
+
 # Decided to remove H3K4me3 from final upset plot (2024-07-31)
 final_sum_table <- final_sum_table %>%
   select(-H3K4me3)
@@ -37,7 +41,7 @@ final_sum_table <- final_sum_table %>%
   mutate(TFBS = ifelse((TF_hoco + TF_tffm) >= 1, 1, 0)) %>%
   select(-TF_hoco, -TF_tffm)
 ##################################################
-# End optional step                              #
+# End optional steps                              #
 ##################################################
 
 
