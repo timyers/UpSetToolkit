@@ -26,16 +26,19 @@ library(dplyr)
 bed_colnames <- c("chrom", "chromStart", "chromEnd", "rsid")
 
 # Read the BED file
-bed_filename <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/rcc_snps_39_20240723_075528.bed"
+# bed_filename <- "data/input/snps_of_interest/rcc_snps_39_20240723_075528.bed"
+bed_filename <- "data/input/snps_of_interest/rcc_snps_32_20240801_085645.bed"
 bed_file <- read.table(bed_filename, header = FALSE, 
                        col.names = bed_colnames, 
                        stringsAsFactors = FALSE)
 
 # Read the sumstats file
-sumstats_filename <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/all_39_SNPs_sumstats_risk-alleles.txt"
+# sumstats_filename <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/chip-atlas/all_39_SNPs_sumstats_risk-alleles.txt"
+sumstats_filename <- "data/input/all_39_SNPs_sumstats_risk-alleles.txt"
 sumstats_file <- read.table(sumstats_filename, header = TRUE, stringsAsFactors = FALSE)
 
 # Perform the join by rsid
+# Will join data frames with different number of rows
 combined_data <- inner_join(bed_file, sumstats_file, by = "rsid")
 
 # Create the new column in the specified format required by
@@ -51,10 +54,18 @@ head(combined_data)
 # Write the combined data to a new file
 # Get current date and time to use for unique filename
 current_time <- format(Sys.time(), "%Y%m%d_%H%M%S") # used to create unique filenames
+num_snps <- nrow(combined_data)
 
 # DNase output path
-output_path <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/required_format/"
+# output_path <- "/Users/myersta/Library/CloudStorage/OneDrive-NationalInstitutesofHealth/Winter/plots/fabian_tf/required_format/"
+output_path <- "data/input/fabian_tffm/"
 output_file <- paste0(output_path, "fabian_format", 
                       "_all_39_SNPs_", current_time, ".txt")
+output_file <- paste0(output_path,
+                      "fabian_format_",
+                      num_snps,
+                      "_SNPs_",
+                      current_time,
+                      ".txt")
 
 write.table(combined_data, file = output_file, sep = "\t", row.names = FALSE, quote = FALSE)
