@@ -17,14 +17,15 @@ library(readr)
 library(stringr)
 
 ############## First Input File ##################
-# Input file options, choose one only, same for all analyses
-# six_rcc_snps <- "data/input/snps_of_interest/rcc_snps_six_gr38.bed"
+# Input file options, **choose one only**, same for all analyses
+six_rcc_snps <- "data/input/snps_of_interest/rcc_snps_six_gr38.bed"
 all_39_rcc_snps <- "data/input/snps_of_interest/rcc_snps_39_20240723_075528.bed"
-
+subset_32_rcc_snps <- "data/input/snps_of_interest/rcc_snps_32_20240801_085645.bed"
 
 # Load the first bed file of SNPs of interest
 snp_file <- six_rcc_snps
 snp_file <- all_39_rcc_snps    # choose one from above for crispri/a screening proj.
+snp_file <- subset_32_rcc_snps
 snps <- read_delim(snp_file, delim = "\t", col_names = c("chrom", "chromStart", "chromEnd", "rsid"), comment = "#")
 #################################################
 
@@ -99,6 +100,7 @@ snps[[new_col_name_count]] <- apply(snps, 1, function(row) count_overlaps(as.dat
 # Save the updated SNP file with the new column
 # Get current date and time to use for unique filename
 current_time <- format(Sys.time(), "%Y%m%d_%H%M%S") # used to create unique filenames
+num_snps <- nrow(snps)
 
 # DNase output path
 output_path <- "data/output/DNase/counts/"
@@ -113,6 +115,13 @@ output_path <- "data/output/H3K27ac/counts/"
 
 # output_file <- paste0(output_path, new_col_name, "_six_SNPs.bed.txt")
 output_file <- paste0(output_path, new_col_name, "_all_39_SNPs_", current_time, ".bed.txt")
+output_file <- paste0(output_path,
+                     new_col_name,
+                     "_",
+                     num_snps,
+                     "_SNPs_",
+                     current_time,
+                     ".bed.txt")
 
 write_delim(snps, output_file, delim = "\t", col_names = TRUE)
 
