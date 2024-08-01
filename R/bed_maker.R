@@ -55,7 +55,7 @@ current_time <- format(Sys.time(), "%Y%m%d_%H%M%S")
 snp_list_length <- nrow(bed_data)
 
 # Create a unique file name using the current date and time
-file_name_path <- "data/input/"
+file_name_path <- "data/input/snps_of_interest/"
 file_name <- paste0(file_name_path, "rcc_snps_",
                     snp_list_length, "_", current_time, ".bed")
 
