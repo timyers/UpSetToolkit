@@ -7,7 +7,7 @@
 # Columns are "chrom", "chromStart", "chromEnd", "rsid"
 # Genome build is GRCh38.p14
 
-install.packages("biomaRt")
+library("biomaRt") # Bioconductor package
 
 # Read in the list of SNP IDs from the text file
 rsid_filename <- "data/input/TW_39-SNPs-List.txt" # 39 Full 39 SNPs
