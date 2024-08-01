@@ -18,10 +18,14 @@ library(dplyr)
 # Read the first text file of SNPs of interest,
 # with Fabian Variant required formatting
 snp_file <- "data/input/fabian_tffm/reformated_fabian_all_39_SNPs.txt"
+# Or
+snp_file <- "data/input/fabian_tffm/reformatted_fabian_32_SNPs.txt"
 snps <- read_delim(snp_file, delim = "\t", col_names = TRUE, comment = "#")
 
 # Read the second HOCOMOCO results CSV file,
 hoco_results_file <- "data/input/motifbreakr_hoco/rcc_39-snps_hocomoco_no-ld_granges_object_pval_20240724_081716.csv"
+# Or
+hoco_results_file <- "data/input/motifbreakr_hoco/rcc_32-snps_hocomoco_no-ld_granges_object_pval_20240801_111804.csv"
 hoco_results <- read_csv(hoco_results_file, 
                          col_names = TRUE
                         )
@@ -55,5 +59,18 @@ snps <- snps %>%
 # Delete the fabian_format column from snps
 snps <- snps %>% select(-fabian_format)
 
+# Create file name and path
+current_time <- format(Sys.time(), "%Y%m%d_%H%M%S") # used to create unique filenames
+num_snps <- nrow(snps)
+
+output_path <- "data/output/motifbreakr_hoco/"
+output_file <- output_file <- paste0(output_path,
+                                     "hoco_count_",
+                                     num_snps,
+                                     "_snps_",
+                                     current_time,
+                                     ".txt")
+
 # Write the updated snps data to a new file
-write_tsv(snps, "data/output/motifbreakr_hoco/hoco_count_39_snps.txt")
+# write_tsv(snps, "data/output/motifbreakr_hoco/hoco_count_39_snps.txt")
+write_tsv(snps, output_file)
