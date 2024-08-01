@@ -13,7 +13,8 @@
 library(dplyr)
 
 # Step 1: List all text files in the directory
-directory_path <- "data/output/upset_count_files/input"
+# directory_path <- "data/output/upset_count_files/input"
+directory_path <- "data/output/upset_count_files/input/32_snps/"
 text_files <- list.files(path = directory_path, pattern = "\\.txt$", full.names = TRUE)
 
 # Step 2: Read each text file into a data frame and store them in a list
@@ -21,15 +22,24 @@ data_frames_list <- lapply(text_files, function(file) {
   read.table(file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
 })
 
-# Step 3: Check that all data frames have the same `rsid` entries and the same number of rows
-common_rsid <- data_frames_list[[1]]$rsid
+# Step 2.5: Sort each data frame by rsid
+# Function to sort data frame by 'rsid'
+sort_by_rsid <- function(df) {
+  df[order(df$rsid), ]
+}
 
-if (!all(sapply(data_frames_list, function(df) all(df$rsid == common_rsid)))) {
+# Apply the function to each data frame in the list
+sorted_df_list <- lapply(data_frames_list, sort_by_rsid)
+
+# Step 3: Check that all data frames have the same `rsid` entries and the same number of rows
+common_rsid <- sorted_df_list[[1]]$rsid
+
+if (!all(sapply(sorted_df_list, function(df) all(df$rsid == common_rsid)))) {
   stop("Not all files have the same `rsid` entries.")
 }
 
 # Step 4: Merge the data frames by `rsid`
-combined_data_frame <- Reduce(function(x, y) merge(x, y, by = "rsid"), data_frames_list)
+combined_data_frame <- Reduce(function(x, y) merge(x, y, by = "rsid"), sorted_df_list)
 
 # Step 5: Select only the necessary columns
 selected_columns <- c("rsid", "chrom.x", "hg38.x", "ref.x", "risk.x")
@@ -44,7 +54,17 @@ final_data_frame <- combined_data_frame %>%
 colnames(final_data_frame) <- gsub("\\.x$", "", colnames(final_data_frame))
 
 # Step 7: Save data frame as an intermediary file.
-write_tsv(final_data_frame, "data/output/upset_count_files/output/super_counts_interm_39_snps.txt")
+current_time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+output_path <- "data/output/upset_count_files/output/"
+output_file <- paste0(output_path,
+                      "super_counts_interm_",
+                      nrow(final_data_frame),
+                      "_snps_",
+                      current_time,
+                      ".txt"
+                      )
+
+write_tsv(final_data_frame, output_file)
 
 # Step 8: Convert _count columns to binary (1 if >=1, otherwise 0)
 final_data_frame <- final_data_frame %>%
@@ -62,5 +82,15 @@ final_data_frame <- final_data_frame %>%
 
 
 # Step 9: Write final data frame with binary values to text file
-# This file will be used to make the upset plot.
-write_tsv(final_data_frame, "data/output/upset_count_files/output/final_binary_counts_39_snps.txt")
+###### This file will be used to make the upset plot. ######
+current_time <- format(Sys.time(), "%Y%m%d_%H%M%S")
+output_path <- "data/output/upset_count_files/output/"
+output_file <- paste0(output_path,
+                      "final_binary_counts_",
+                      nrow(final_data_frame),
+                      "_snps_",
+                      current_time,
+                      ".txt"
+)
+
+write_tsv(final_data_frame, output_file)
