@@ -11,7 +11,7 @@ library("biomaRt") # Bioconductor package
 
 # Read in the list of SNP IDs from the text file
 rsid_filename <- "data/input/TW_39-SNPs-List.txt" # 39 Full 39 SNPs
-rsid_filename <- "data/input/TW_32-SNPs-List.txt" # 32 SNPs, subset
+rsid_filename <- "data/input/TW_32-SNPs_List.txt" # 32 SNPs, subset
 snp_ids <- readLines(rsid_filename)
 
 ### Use `biomaRt` to get the chrom and position info, GRCh38.p14
@@ -29,6 +29,7 @@ snp_info <- snp_info[grepl("^\\d+$", snp_info$chr_name), ]
 
 ### Format the data
 # format the retrieved data to match the BED file structure
+# detailed above
 bed_data <- data.frame(
   chrom = paste0("chr", snp_info$chr_name),
   chromStart = snp_info$chrom_start,
