@@ -10,7 +10,8 @@
 install.packages("biomaRt")
 
 # Read in the list of SNP IDs from the text file
-rsid_filename <- "data/input/TW_39-SNPs-List.txt"
+rsid_filename <- "data/input/TW_39-SNPs-List.txt" # 39 Full 39 SNPs
+rsid_filename <- "data/input/TW_32-SNPs-List.txt" # 32 SNPs, subset
 snp_ids <- readLines(rsid_filename)
 
 ### Use `biomaRt` to get the chrom and position info, GRCh38.p14
