@@ -5,6 +5,8 @@
 # chr15	66404397	66404397	rs1549854
 
 # Columns are "chrom", "chromStart", "chromEnd", "rsid"
+# This file can be created from a list of rsIds using
+# the script `bed.maker`
 
 # The second (2) file is the output from the script
 # "bed_parser".
