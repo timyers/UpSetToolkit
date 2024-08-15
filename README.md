@@ -35,6 +35,7 @@ git clone https://github.com/timyers/UpSetToolkit
 |`fabian_format_maker.R` |Creates required input format (e.g. chr17:19437135G>A) used by Fabian-variant from multiple types of input.|
 |`fabian_format_maker2.R` | Reformatting for script "fabian_tffm_counter.R".|
 |`bed_maker.R` |Create a .bed file from a list of rsID's in a text file.|
+|`bed_subsetter.R` | Subset a parsed .bed file from `bed_parser.R` by chromosome number and specified columns. Output is saved to file and used as input by R project `winterPlots`.|
 
 Additional details about the above scripts can be found in the comments at the beginning of each script.
 
