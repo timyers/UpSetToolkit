@@ -47,7 +47,7 @@ output_filepath <- paste0(file_path,
                           "subset_",
                           "chr",
                           chrom_to_subset,
-                          "_",
+                          "_hg38_",
                           file_name)
 
 # Write the final data frame to a text file
